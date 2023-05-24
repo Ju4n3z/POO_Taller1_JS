@@ -18,7 +18,15 @@ class Persona {
         return parrafo;
     }
 
-    static esMayordeEdad(nombre, edad) {
+    get getNombre() {
+        return this.nombre;
+    }
+
+    get getEdad() {
+        return this.edad;
+    }
+
+    static esMayordeEdad(edad, nombre) {
         if (edad >= 18) {
             return `<p> ${nombre} es mayor de edad </p>`;
         } else {
@@ -52,7 +60,7 @@ const instanciarPersona = (data) => {
     let parrafo1 = document.getElementById('parrafo1');
     parrafo1.innerHTML = '';
     parrafo1.insertAdjacentHTML('beforeend', persona1.saludar());
-    parrafo1.insertAdjacentHTML('beforeend', Persona.esMayordeEdad(data.nombre, data.edad));
+    parrafo1.insertAdjacentHTML('beforeend', Persona.esMayordeEdad(persona1.getEdad, persona1.getNombre));
 }
 
 const instanciarEstudiante = (data) => {
