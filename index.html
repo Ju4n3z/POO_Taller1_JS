@@ -12,7 +12,7 @@
 </head>
 <body>
     <br>
-    <div class="container text-center bg-white opacity-75">
+    <div class="container text-center bg-light">
 
         <h1 class="display-4">Taller 1 de POO con JavaScript</h1>
         <hr class="border border-warning border-2 opacity-50">
@@ -280,7 +280,83 @@
 
         <!-- Ejercicio 4 -->
 
-    </div>
+        <div class="row justify-content-evenly" id="ejercicio4">
+            <div class="col-3">
+                <h3>Vehiculo</h3>
+                <form id="formulario14">
+                    <div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="floatingMarca" name="marca" placeholder="marca" required>
+                            <label for="floatingMarca">Marca</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="floatingModelo" name="modelo" placeholder="modelo" required>
+                            <label for="floatingModelo">Modelo</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="floatingVelocidad" name="velocidad" placeholder="velocidad" required>
+                            <label for="floatingVelocidad">Velocidad</label>
+                        </div>
+                        <div>
+                            <input type="submit" class="btn btn-outline-warning" value="Enviar">
+                        </div>
+                    </div>
+                </form>
+                <br>
+                <div style="display: none;" id="resultado14">
+                    <div>
+                        <h3>Resultado</h3>
+                        <div id="acelerar1">
 
+                        </div>
+                        <div id="parrafo14">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <h3>Coche</h3>
+                <form id="formulario24">
+                    <div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="floatingMarca" name="marca" placeholder="marca" required>
+                            <label for="floatingMarca">Marca</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="floatingModelo" name="modelo" placeholder="modelo" required>
+                            <label for="floatingModelo">Modelo</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="floatingVelocidad" name="velocidad" placeholder="velocidad" required>
+                            <label for="floatingVelocidad">Velocidad</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="floatingCombustible" name="combustible" placeholder="combustible" required>
+                            <label for="floatingCombustible">Combustible</label>
+                        </div>
+                        <div>
+                            <input type="submit" class="btn btn-outline-warning" value="Enviar">
+                        </div>
+                    </div>
+                </form>
+                <br>
+                <div style="display: none;" id="resultado24">
+                    <div>
+                        <h3>Resultado</h3>
+                        <div id="acelerar2">
+
+                        </div>
+                        <div id="parrafo24">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="border border-warning border-2 opacity-50">
+    </div>
+    
 </body>
 </html>

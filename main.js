@@ -214,3 +214,102 @@ formulario33.addEventListener('submit', (e) => {
     let data = Object.fromEntries(new FormData(e.target));
     instanciarRectangulo(data);
 });
+
+//Cuarto ejercicio
+
+class Vehiculo {
+    constructor({marca, modelo, velocidad}) {
+        this.marca = marca;
+        this.modelo = modelo;
+        this.velocidad = parseFloat(velocidad);
+    }
+
+    get getVelocidad() {
+        return this.velocidad;
+    }
+
+    acelerar() {
+        this.velocidad += 10;
+    }
+
+    velocidadActual() {
+        return `<p>La velocidad actual del vehículo es ${this.velocidad} Km/h</p>`;
+    }
+    
+    static convertirKmAMph(velocidad) {
+        let millas = parseFloat(velocidad) / 1.609;
+        return `<p>La velocidad en millas es ${millas.toFixed(2)} mph</p>`;
+    }
+}
+
+class Coche extends Vehiculo {
+    constructor({marca, modelo, velocidad, combustible}) {
+        super({marca, modelo, velocidad});
+        this.combustible = combustible;
+    }
+    acelerar() {
+        this.velocidad += 20;
+    }
+}
+
+let formulario14 = document.getElementById('formulario14');
+let formulario24 = document.getElementById('formulario24');
+
+const instanciarVehiculo = (data) => {
+    let vehiculo1 = new Vehiculo(data);
+    let resultado1 = document.getElementById('resultado14');
+    let acelerar1 = document.getElementById('acelerar1');
+    resultado1.removeAttribute('style');
+    let parrafo1 = document.getElementById('parrafo14');
+    parrafo1.innerHTML = '';
+    parrafo1.insertAdjacentHTML('beforeend', vehiculo1.velocidadActual());
+    parrafo1.insertAdjacentHTML('beforeend', Vehiculo.convertirKmAMph(vehiculo1.getVelocidad));
+    let botonVelocidad = document.createElement('button');
+    botonVelocidad.setAttribute('id', 'botonVelocidad1');
+    botonVelocidad.setAttribute('class', 'btn btn-outline-warning');
+    botonVelocidad.setAttribute('type', 'button');
+    botonVelocidad.innerText = 'Acelerar';
+    acelerar1.appendChild(botonVelocidad);
+    botonVelocidad.addEventListener('click', () => {
+
+        parrafo1.innerHTML = '';
+        parrafo1.insertAdjacentHTML('beforeend', vehiculo1.velocidadActual(vehiculo1.acelerar()));
+        parrafo1.insertAdjacentHTML('beforeend', Vehiculo.convertirKmAMph(vehiculo1.getVelocidad));
+    });
+}
+
+const instanciarCoche = (data) => {
+    let coche1 = new Coche(data);
+    let resultado2 = document.getElementById('resultado24');
+    let acelerar = document.getElementById('acelerar2');
+    resultado2.removeAttribute('style');
+    let parrafo2 = document.getElementById('parrafo24');
+    parrafo2.innerHTML = '';
+    parrafo2.insertAdjacentHTML('beforeend', coche1.velocidadActual());
+    parrafo2.insertAdjacentHTML('beforeend', Vehiculo.convertirKmAMph(coche1.getVelocidad));
+    let botonVelocidad = document.createElement('button');
+    botonVelocidad.setAttribute('id', 'botonVelocidad2');
+    botonVelocidad.setAttribute('class', 'btn btn-outline-warning');
+    botonVelocidad.setAttribute('type', 'button');
+    botonVelocidad.innerText = 'Acelerar';
+    acelerar.appendChild(botonVelocidad);
+    botonVelocidad.addEventListener('click', () => {
+        parrafo2.innerHTML = '';
+        parrafo2.insertAdjacentHTML('beforeend', coche1.velocidadActual(coche1.acelerar()));
+        parrafo2.insertAdjacentHTML('beforeend', Vehiculo.convertirKmAMph(coche1.getVelocidad));
+    });
+}
+
+formulario14.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let data = Object.fromEntries(new FormData(e.target));
+    instanciarVehiculo(data);
+});
+
+formulario24.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let data = Object.fromEntries(new FormData(e.target));
+    instanciarCoche(data);
+});
+
+//Quinto ejercicio
