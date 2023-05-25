@@ -313,3 +313,69 @@ formulario24.addEventListener('submit', (e) => {
 });
 
 //Quinto ejercicio
+
+const formatter = new Intl.NumberFormat('en-CO', {
+    style: 'currency',
+    currency: 'COP',
+    minimumFractionDigits: 0
+  })
+
+class Empleado {
+    constructor({nombre, edad, sueldo}) {
+        this.nombre = nombre;
+        this.edad = parseInt(edad);
+        this.sueldo = parseFloat(sueldo);
+    }
+
+    get getSueldo() {
+        return this.sueldo;
+    }
+
+    calcularSueldo() {
+        return `<p>El sueldo del empleado ${this.nombre} es ${formatter.format(this.sueldo*12)}</p>`;
+    }
+}
+
+class Gerente extends Empleado {
+    constructor({nombre, edad, sueldo, departamento}) {
+        super({nombre, edad, sueldo});
+        this.departamento = departamento;
+    }
+
+    calcularSueldo() {
+        return `<p>El sueldo del gerente ${this.nombre} es ${formatter.format(this.sueldo*1.10*12)}</p>`;
+    }
+}
+
+let formulario15 = document.getElementById('formulario15');
+let formulario25 = document.getElementById('formulario25');
+
+const instanciarEmpleado = (data) => {
+    let empleado1 = new Empleado(data);
+    let resultado1 = document.getElementById('resultado15');
+    let parrafo1 = document.getElementById('parrafo15');
+    resultado1.removeAttribute('style');
+    parrafo1.innerHTML = '';
+    parrafo1.insertAdjacentHTML('beforeend', empleado1.calcularSueldo());
+}
+
+const instanciarGerente = (data) => {
+    let gerente1 = new Gerente(data);
+    let resultado2 = document.getElementById('resultado25');
+    let parrafo2 = document.getElementById('parrafo25');
+    resultado2.removeAttribute('style');
+    parrafo2.innerHTML = '';
+    parrafo2.insertAdjacentHTML('beforeend', gerente1.calcularSueldo());
+}
+
+formulario15.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let data = Object.fromEntries(new FormData(e.target));
+    instanciarEmpleado(data);
+});
+
+formulario25.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let data = Object.fromEntries(new FormData(e.target));
+    instanciarGerente(data);
+});
