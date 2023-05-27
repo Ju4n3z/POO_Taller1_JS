@@ -1,3 +1,55 @@
+let boton1 = document.getElementById('1');
+let boton2 = document.getElementById('2');
+let boton3 = document.getElementById('3');
+let boton4 = document.getElementById('4');
+let boton5 = document.getElementById('5');
+
+let ejercicio1 = document.getElementById('ejercicio1');
+let ejercicio2 = document.getElementById('ejercicio2');
+let ejercicio3 = document.getElementById('ejercicio3');
+let ejercicio4 = document.getElementById('ejercicio4');
+let ejercicio5 = document.getElementById('ejercicio5');
+
+boton1.addEventListener('click', () => {
+    ejercicio1.removeAttribute('style');
+    ejercicio2.setAttribute('style', 'display: none');
+    ejercicio3.setAttribute('style', 'display: none');
+    ejercicio4.setAttribute('style', 'display: none');
+    ejercicio5.setAttribute('style', 'display: none');
+});
+
+boton2.addEventListener('click', () => {
+    ejercicio1.setAttribute('style', 'display: none');
+    ejercicio2.removeAttribute('style');
+    ejercicio3.setAttribute('style', 'display: none');
+    ejercicio4.setAttribute('style', 'display: none');
+    ejercicio5.setAttribute('style', 'display: none');
+});
+
+boton3.addEventListener('click', () => {
+    ejercicio1.setAttribute('style', 'display: none');
+    ejercicio2.setAttribute('style', 'display: none');
+    ejercicio3.removeAttribute('style');
+    ejercicio4.setAttribute('style', 'display: none');
+    ejercicio5.setAttribute('style', 'display: none');
+});
+
+boton4.addEventListener('click', () => {
+    ejercicio1.setAttribute('style', 'display: none');
+    ejercicio2.setAttribute('style', 'display: none');
+    ejercicio3.setAttribute('style', 'display: none');
+    ejercicio4.removeAttribute('style');
+    ejercicio5.setAttribute('style', 'display: none');
+});
+
+boton5.addEventListener('click', () => {
+    ejercicio1.setAttribute('style', 'display: none');
+    ejercicio2.setAttribute('style', 'display: none');
+    ejercicio3.setAttribute('style', 'display: none');
+    ejercicio4.setAttribute('style', 'display: none');
+    ejercicio5.removeAttribute('style');
+});
+
 //Primer ejercicio
 
 class Persona {
@@ -59,6 +111,7 @@ const instanciarEstudiante = (data) => {
     parrafo2.innerHTML = '';
     parrafo2.insertAdjacentHTML('beforeend', estudiante1.saludar());
     parrafo2.insertAdjacentHTML('beforeend', estudiante1.estudiar());
+    parrafo2.insertAdjacentHTML('beforeend', Persona.esMayordeEdad(estudiante1.getEdad, estudiante1.getNombre));
 }
 
 let formulario11 = document.getElementById('formulario11');
@@ -138,17 +191,17 @@ formulario22.addEventListener('submit', (e) => {
 class Figura {
     constructor({nombre, area = 0}) {
         this.nombre = nombre;
-        this.area = area;
+        this.area = parseFloat(area);
     }
     calcularArea() {
-        return `<p>El área de la figura es ${this.area}</p>`;
+        return `<p>El área de la figura es ${(this.area).toFixed(2)}</p>`;
     }
 }
 
 class Circulo extends Figura {
     constructor({nombre, radio}) {
         super({nombre});
-        this.radio = radio;
+        this.radio = parseFloat(radio);
     }
     calcularArea() {
         return `<p>El área del círculo es ${(Math.PI * this.radio * this.radio).toFixed(2)}</p>`;
@@ -321,6 +374,7 @@ const formatter = new Intl.NumberFormat('en-CO', {
   })
 
 class Empleado {
+    static id = 0;
     constructor({nombre, edad, sueldo}) {
         this.nombre = nombre;
         this.edad = parseInt(edad);
@@ -333,6 +387,11 @@ class Empleado {
 
     calcularSueldo() {
         return `<p>El sueldo del empleado ${this.nombre} es ${formatter.format(this.sueldo*12)}</p>`;
+    }
+
+    static idEmpleado() {
+        Empleado.id++;
+        return `<p>El id del empleado es ${Empleado.id}</p>`;
     }
 }
 
@@ -357,6 +416,7 @@ const instanciarEmpleado = (data) => {
     resultado1.removeAttribute('style');
     parrafo1.innerHTML = '';
     parrafo1.insertAdjacentHTML('beforeend', empleado1.calcularSueldo());
+    parrafo1.insertAdjacentHTML('beforeend', Empleado.idEmpleado());
 }
 
 const instanciarGerente = (data) => {
@@ -366,6 +426,7 @@ const instanciarGerente = (data) => {
     resultado2.removeAttribute('style');
     parrafo2.innerHTML = '';
     parrafo2.insertAdjacentHTML('beforeend', gerente1.calcularSueldo());
+    parrafo2.insertAdjacentHTML('beforeend', Empleado.idEmpleado());
 }
 
 formulario15.addEventListener('submit', (e) => {
